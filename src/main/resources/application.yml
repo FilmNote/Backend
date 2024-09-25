@@ -1,21 +1,23 @@
-# ?? ?? ??
 server:
   port: 8080
 
-# database ?? ??
+# database 설정
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url:
-    username:
-    password:
+    url: jdbc:mysql://localhost:3306/world?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 12345
   thymeleaf:
     cache: false
 
-  # spring data jpa ??
+  # spring data jpa 설정
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false
     show-sql: true
     hibernate:
       ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
