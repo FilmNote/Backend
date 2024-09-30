@@ -33,8 +33,8 @@ public class MovieController {
     /**
      * Movie 상세 조회
      */
-    @GetMapping("/movies/detail")
-    public ResponseEntity<Movie> getMovieById(@RequestParam Long id) {
+    @GetMapping("/movies/detail/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.findById(id));
     }
 }
