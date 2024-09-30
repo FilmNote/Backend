@@ -44,4 +44,8 @@ public class MovieService {
     public Movie findById(Long id) {
         return movieRepository.findById(id).orElseThrow();
     }
+
+    public List<Movie> searchMovies(String keyword) {
+        return movieRepository.searchByKeyword(keyword);
+    }
 }

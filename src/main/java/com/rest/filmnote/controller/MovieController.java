@@ -10,6 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/movies")
 public class MovieController {
 
     private final MovieService movieService;
@@ -17,7 +18,7 @@ public class MovieController {
     /**
      * Movie DB 저장
      */
-    @PostMapping("/movies/popular")
+    @PostMapping("/popular")
     public ResponseEntity<String> getPopularMovies() {
         return ResponseEntity.ok(movieService.insertMovie());
     }
@@ -25,7 +26,7 @@ public class MovieController {
     /**
      * Movie 전체 조회
      */
-    @GetMapping("/movies")
+    @GetMapping()
     public ResponseEntity<List<Movie>> getMovieAll() {
         return ResponseEntity.ok(movieService.findAll());
     }
@@ -33,8 +34,14 @@ public class MovieController {
     /**
      * Movie 상세 조회
      */
-    @GetMapping("/movies/detail/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.findById(id));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Movie>> searchMovies(@RequestParam String keyword) {
+        List<Movie> movies = movieService.searchMovies(keyword);
+        return ResponseEntity.ok(movies);
     }
 }
